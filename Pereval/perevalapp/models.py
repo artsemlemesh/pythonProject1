@@ -52,11 +52,25 @@ class Images(models.Model):
 
 
 class PerevalAdd(models.Model):
+    new = 'new'
+    pending = 'pending'
+    accepted = 'accepted'
+    rejected = 'rejected'
+    STATUS = [
+        (new, 'new'),
+        (pending, 'is being done'),
+        (accepted, 'successfully moderated'),
+        (rejected, 'was moderated but was not accepted')
+    ]
+
+
+
     beauty_title = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
     other_titles = models.CharField(max_length=255)
     connect = models.CharField(max_length=255)
     add_time = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=10, choices=STATUS, default=new)
 
     user_id = models.ForeignKey(Users, on_delete=models.CASCADE)
 
@@ -65,4 +79,4 @@ class PerevalAdd(models.Model):
     level_diff = models.ForeignKey(Level, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.beauty_title
+        return f'{self.pk}:  {self.beauty_title}'
