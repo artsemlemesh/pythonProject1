@@ -30,6 +30,18 @@ class PerevalViewSet(viewsets.ModelViewSet):
     queryset = PerevalAdd.objects.all()
     serializer_class = PerevalSerializer
 
+
+    def create(self, request, *args, **kwargs):
+        serializer = PerevalSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'status': status.HTTP_200_OK, 'message': 'Success', 'id': serializer.data['id']})
+        if status.HTTP_400_BAD_REQUEST:
+            return Response({'status': status.HTTP_400_BAD_REQUEST, 'message': 'Failed to process the data', 'id': None})
+        if status.HTTP_500_INTERNAL_SERVER_ERROR:
+            return Response({'status': status.HTTP_500_INTERNAL_SERVER_ERROR, 'message': 'Server\'s error', 'id': None})
+
+
     # def get_queryset(self):
     #     pk = self.kwargs.get('pk')
     #     if not pk:

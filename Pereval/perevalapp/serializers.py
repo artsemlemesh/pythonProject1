@@ -48,7 +48,6 @@ class PerevalSerializer(WritableNestedModelSerializer):
             user_id = user_serializer.save()
         else:
             user_id = Users.objects.create(**user_id)
-
         coords_id = Coord.objects.create(**coords_id)
         level_diff = Level.objects.create(**level_diff)
         pereval_id = PerevalAdd.objects.create(**validated_data, user_id=user_id, coords_id=coords_id, level_diff=level_diff, status='new')
