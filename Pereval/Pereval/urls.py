@@ -26,6 +26,6 @@ print(router.urls)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('api/v1/', include(router.urls)),
+    path('submit/', include(router.urls)),
 
 ]

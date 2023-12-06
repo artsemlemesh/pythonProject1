@@ -26,15 +26,39 @@ class ImageSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PerevalSerializer(WritableNestedModelSerializer):
-    user = UsersSerializer()
-    coords = CoordSerializer()
-    level = LevelSerializer(allow_null=True)
-    images = ImageSerializer(many=True)
+    user_id = UsersSerializer()
+    coords_id = CoordSerializer()
+    level_diff = LevelSerializer(allow_null=True)
+    image = ImageSerializer(many=True)
     class Meta:
         model = PerevalAdd
-        fields = ['id', 'images', 'user', 'coords', 'level', 'beauty_title', 'title', 'other_titles', 'connect', 'add_time', 'coords_id', 'level_diff', 'user_id']
+        fields = ['id', 'user_id', 'coords_id', 'level_diff', 'beauty_title', 'title', 'other_titles', 'connect', 'add_time', 'image']   #'id', 'images', 'user', 'coords', 'level', 'beauty_title', 'title', 'other_titles', 'connect', 'add_time'
 
 
+    def create(self, validated_data, **kwargs):
+        user_id = validated_data.pop('user_id')
+        coords_id = validated_data.pop('coords_id')
+        level_diff = validated_data.pop('level_diff')
+        images = validated_data.pop('image')
+
+        unique_user = Users.objects.filter(email=user_id['email'])
+        if unique_user.exists():
+            user_serializer = UsersSerializer(data=user_id)
+            user_serializer.is_valid(raise_exception=True)
+            user_id = user_serializer.save()
+        else:
+            user_id = Users.objects.create(**user_id)
+
+        coords_id = Coord.objects.create(**coords_id)
+        level_diff = Level.objects.create(**level_diff)
+        pereval_id = PerevalAdd.objects.create(**validated_data, user_id=user_id, coords_id=coords_id, level_diff=level_diff, status='new')
+
+        for image in images:
+            data = image.pop('data')
+            title = image.pop('title')
+            Images.objects.create(data = data, title=title, pereval_id=pereval_id)
+
+        return pereval_id
 
 
 
