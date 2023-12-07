@@ -53,24 +53,6 @@ class Images(models.Model):
     title = models.CharField(max_length=255)
     pereval_id = models.ForeignKey('PerevalAdd', on_delete=models.CASCADE, related_name='image')
 
-    # def upload_image(image_path):
-    #     with open(image_path, 'rb') as f:
-    #         image_bytes = f.read()
-    #     encoded_data = base64.b64encode(image_bytes)
-    #     image = Images(data=encoded_data, title="Uploaded Image")
-    #     image.save()
-    #
-    # def get_image_data(image_id):
-    #     image = Images.objects.get(pk=image_id)
-    #     encoded_data = image.data
-    #     decoded_bytes = base64.b64decode(encoded_data)
-    #     image_file = io.BytesIO(decoded_bytes)
-    #     return HttpResponse(image_file, content_type='image/jpeg')
-
-
-
-
-
 
 
 class PerevalAdd(models.Model):
