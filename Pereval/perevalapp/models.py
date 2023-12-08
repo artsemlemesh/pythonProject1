@@ -53,7 +53,8 @@ class Images(models.Model):
     title = models.CharField(max_length=255)
     pereval_id = models.ForeignKey('PerevalAdd', on_delete=models.CASCADE, related_name='image')
 
-
+    def __str__(self):
+        return f'title: {self.title}'
 
 class PerevalAdd(models.Model):
     new = 'new'
