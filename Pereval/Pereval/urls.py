@@ -26,6 +26,6 @@ print(router.urls)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('submit/', include(router.urls)),
-
+    path('submitData/', include(router.urls)),
+    path('submitData/user__email=<str:email>', EmailApiView.as_view())
 ]

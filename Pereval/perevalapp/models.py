@@ -10,7 +10,7 @@ from django.http import HttpResponse
 class Users(models.Model):
     email = models.EmailField(max_length=50)
     full_name = models.CharField(max_length=255)
-    phone = models.IntegerField(unique=True)
+    phone = models.IntegerField()
 
     def __str__(self):
         return self.full_name
