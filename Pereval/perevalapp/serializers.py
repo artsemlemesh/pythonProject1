@@ -38,6 +38,7 @@ class PerevalSerializer(WritableNestedModelSerializer):
 
 
 
+    #restricts altering user's data while updating pereval
 
     def validate(self, data):
         if self.instance is not None:
@@ -51,7 +52,6 @@ class PerevalSerializer(WritableNestedModelSerializer):
             if user_data and any(valid_user_fields):
                 raise serializers.ValidationError({'cant be changed'})
         return data
-
 
 
     # def create(self, validated_data, **kwargs):

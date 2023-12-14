@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from rest_framework import  viewsets
+from rest_framework import viewsets
 from .serializers import *
 from .models import PerevalAdd, Coord, Level, Users, Images
 from rest_framework.response import Response
@@ -31,6 +31,8 @@ class PerevalViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['user__email',]
 
+
+    #CREATING pereval object
     def create(self, request, *args, **kwargs):
         serializer = PerevalSerializer(data=request.data)
         if serializer.is_valid():
@@ -41,6 +43,7 @@ class PerevalViewSet(viewsets.ModelViewSet):
             error_status = status.HTTP_400_BAD_REQUEST if errors else status.HTTP_500_INTERNAL_SERVER_ERROR
             error_message = 'failed to process the data' if errors else 'server\'s error'
             return Response({'status': error_status, 'message': error_message, 'errors': errors, 'id': None})
+
 
 
     def update(self, request, *args, **kwargs):
