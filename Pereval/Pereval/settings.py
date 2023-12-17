@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'perevalapp',
     'rest_framework',
-    'django_filters'
+    'django_filters',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -143,7 +144,25 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer'
-    ],
+            'rest_framework.renderers.JSONRenderer',
+            'rest_framework.renderers.BrowsableAPIRenderer'
+        ],
+
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
+
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Django DRF Pereval",
+    # 'ENUM_NAME_OVERRIDES': {
+    #     'SummerEnum': {
+    #         'CHOICE_1': 'SUMMER1',
+    #         'CHOICE_2': 'summer2',
+    #     },
+    #     'SpringEnum': {
+    #         'CHOICE_1': 'SPRING1',
+    #         'CHOICE_2': 'spring2',
+    #     }
+    # }
+}
+

@@ -29,7 +29,7 @@ class PerevalViewSet(viewsets.ModelViewSet):
     queryset = PerevalAdd.objects.all()
     serializer_class = PerevalSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['user__email',]
+    # filterset_fields = ['user__email',]
 
 
     #CREATING pereval object
@@ -60,7 +60,8 @@ class PerevalViewSet(viewsets.ModelViewSet):
 
 
 class EmailApiView(generics.ListAPIView):
-    serializer_class = PerevalSerializer()
+    # queryset = Users.objects.all()
+    serializer_class = PerevalSerializer
 
     def get(self, request, *args, **kwargs):
         email = kwargs.get('email', None)
