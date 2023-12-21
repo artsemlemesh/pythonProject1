@@ -80,7 +80,7 @@
                 PATCH /submitData/{id} - позволяет отредактировать существующую запись (замена), при условии, что она в статусе "new".
                 Редактировать можно все поля, кроме тех, что содержат ФИО, адрес почты и номер телефона.
                 ***
-                GET /api/submitData/user_id__email=<str:email> - позволяет получить данные всех объектов, отправленных на сервер пользователем с почтой <***str:email***>.
+                GET /api/submitData/user__email=<str:email> - позволяет получить данные всех объектов, отправленных на сервер пользователем с почтой <***str:email***>.
                 Фильтрация по адресу электронной почты реализуется с помощью пакета ***django-filter***.
 
 https://artsemlemesh.pythonanywhere.com/submitData/
@@ -91,8 +91,8 @@ https://artsemlemesh.pythonanywhere.com/submitData/
                 https://artsemlemesh.pythonanywhere.com/submitData/
                  (в проекте используется база данных db.sqlite3)
                  ***
-                 Документация ***Swagger***:
-                 https://haelgik.pythonanywhere.com/submitData/schema/
+                 Документация download ***Swagger***:
+                 https://artsemlemesh.pythonanywhere.com/submitData/schema/
                 ***
                 Документация ***docs***
-                https://haelgik.pythonanywhere.com/submitData/schema/docs/
+                https://artsemlemesh.pythonanywhere.com/submitData/schema/docs/
