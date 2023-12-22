@@ -83,7 +83,6 @@
                 GET /api/submitData/user__email=<str:email> - позволяет получить данные всех объектов, отправленных на сервер пользователем с почтой <***str:email***>.
                 Фильтрация по адресу электронной почты реализуется с помощью пакета ***django-filter***.
 
-https://artsemlemesh.pythonanywhere.com/submitData/
 
                 Список внешних зависимостей приведен в файле ***requirements.txt***
                 ***
