@@ -153,7 +153,7 @@ REST_FRAMEWORK = {
 
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Django DRF Pereval",
+    "TITLE": "Django DRF Perevall",
     # 'ENUM_NAME_OVERRIDES': {
     #     'SummerEnum': {
     #         'CHOICE_1': 'SUMMER1',
